@@ -25,3 +25,42 @@ $(function() {
     })
   })
 })
+$(function() {
+  $('.insertSubMenu').on('click', function() {
+    $('.modal-title').html('Add New Sub Menu');
+    $('.form-submit').attr('action', 'http://localhost/loginsystem/menu/submenu')
+    $('#id').val('');
+    $('#title').val('');
+    $('#url').val('');
+    $('#icon').val('');
+    $('.modalButton').html('Add Sub Menu');
+  })
+  $('.updateSubMenu').on('click', function() {
+    $('.form-submit').attr('action', 'http://localhost/loginsystem/menu/editsub')
+    $('.modal-title').html('Edit Sub Menu');
+    $('.modalButton').html('Edit Sub Menu');
+    
+    const id = $(this).data('id');
+    
+    $.ajax({
+      url: 'http://localhost/loginsystem/menu/updatesub',
+      data: { id: id },
+      method: 'post',
+      dataType: 'json',
+      success: function(data) {
+        console.log(data)
+        $('#id').val(data.id);
+        $('#menu_id').val(data.menu_id);
+        $('#menu_id').html(data.menu);
+        $('#title').val(data.title);
+        $('#url').val(data.url);
+        $('#icon').val(data.icon);
+        if (data.is_active == '1') {
+          $('#active').prop( "checked", true );
+        } else {
+          $('#active').prop( "checked", false );
+        }
+      }
+    })
+  })
+})
