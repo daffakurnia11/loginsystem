@@ -40,7 +40,7 @@
 
     <?php foreach ($submenu as $sm) : ?>
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item <?= ($title == $sm['title']) ? 'active' : ''; ?>">
         <a class="nav-link" href="<?= base_url($sm['url']); ?>">
           <i class="<?= $sm['icon']; ?>"></i>
           <span><?= $sm['title']; ?></span></a>
