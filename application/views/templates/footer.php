@@ -51,6 +51,12 @@
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 <script src="<?= base_url('assets/'); ?>js/script.js"></script>
+<script>
+  $('.input-image').on('change', function() {
+    let fileName = $(this).val().split('\\').pop();
+    $(this).next('.label-image').addClass("selected").html(fileName);
+  })
+</script>
 
 </body>
 
